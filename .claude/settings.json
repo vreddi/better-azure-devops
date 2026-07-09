@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install)",
+      "Bash(pnpm compile)",
+      "Bash(pnpm test)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm build)",
+      "Bash(pnpm e2e)",
+      "Bash(pnpm zip)",
+      "Bash(pnpm icons)",
+      "Bash(pnpm wxt prepare)",
+      "Bash(node scripts/e2e.mjs)",
+      "Bash(node scripts/generate-icons.mjs)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)"
+    ]
+  }
+}
