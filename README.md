@@ -48,14 +48,45 @@ pnpm e2e             # real-browser smoke test of the built extension
 pnpm icons           # regenerate public/icon/*.png
 ```
 
-## Load the extension manually
+## Installation
+
+### For development
+
+```bash
+pnpm install && pnpm dev        # Chrome with the extension + HMR
+```
+
+### For testing (sideload locally)
 
 1. `pnpm install && pnpm build`
-2. Open `chrome://extensions`, enable **Developer mode**
+2. Open `chrome://extensions` → enable **Developer mode** (top-right)
 3. **Load unpacked** → select `.output/chrome-mv3`
 4. Open any Azure DevOps pull request list 🎉
 
-Click the toolbar icon (or right-click → Options) to open the settings page.
+### For distribution
+
+**Share with coworkers instantly (no review, no fees):**
+
+```bash
+VERSION=0.2.0 pnpm release    # creates release notes + instructions
+```
+
+Then zip and create a GitHub Release:
+```bash
+cd .output/release
+zip -r better-azure-devops-0.2.0-sideload.zip better-azure-devops-0.2.0/
+gh release create v0.2.0 \
+  --notes-file RELEASE_NOTES.md \
+  better-azure-devops-0.2.0-sideload.zip
+```
+
+Coworkers download the `.zip`, unzip, and sideload via `chrome://extensions`.
+
+**Publish on Chrome Web Store** (takes 1–3 weeks, one-time $5 fee):
+- Set up [developer account](https://developer.chrome.com/docs/webstore/register) (requires 2-Step Verification)
+- Upload `.output/chrome-mv3/` folder + screenshots + description
+- Google reviews for security/privacy/permissions
+- Once approved, auto-updates for all users
 
 ## Project layout
 
